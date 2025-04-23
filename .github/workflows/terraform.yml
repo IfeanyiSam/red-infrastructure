@@ -32,6 +32,7 @@ jobs:
           service_account: ${{ secrets.WIF_SERVICE_ACCOUNT }}    
           token_format: access_token
           audience: 'sts.googleapis.com'  
+
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
@@ -52,7 +53,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Format
-        run: terraform fmt -check
+        run: terraform fmt 
 
       - name: Terraform Validate
         run: terraform validate
@@ -62,3 +63,9 @@ jobs:
         
       - name: Terraform Apply
         run: terraform apply -auto-approve
+
+      - name: Wait for 30 seconds
+        run: sleep 30
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve

@@ -11,8 +11,8 @@ module "network" {
 }
 
 module "iam" {
-  source = "./iam"
-  project_id    = var.project_id
+  source     = "./iam"
+  project_id = var.project_id
 }
 
 
